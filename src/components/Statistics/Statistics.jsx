@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types';
 
-export const Statistics = () => {
+export const Statistics = ({score}) => {
     return (
         <>
             <h2>Statistics</h2>
             <ul>
-                <li>Good: { }</li>
-                <li>Neutral: { }</li>
-                <li>Bad: { }</li>
+                <li>Good: {score.good}</li>
+                <li>Neutral: {score.neutral}</li>
+                <li>Bad: {score.bad}</li>
             </ul>
         </>
             
