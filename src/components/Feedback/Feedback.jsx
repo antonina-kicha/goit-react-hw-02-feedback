@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import {ListButton, StatisticItem} from './Feedback.styled'
+import {ListButton} from './Feedback.styled'
 
 
 export const Feedback = ({ options, onLeaveFeedback }) => {
@@ -8,7 +8,6 @@ export const Feedback = ({ options, onLeaveFeedback }) => {
             <ListButton>
                 {options.map((option) => (
                 <li key={option}><button type='button' onClick={() => onLeaveFeedback(option) }>{option}</button></li>
-
             ))}
                 </ListButton>
         </>
@@ -16,3 +15,7 @@ export const Feedback = ({ options, onLeaveFeedback }) => {
     )
 }
 
+Feedback.propTypes = {
+    options: PropTypes.arrayOf(PropTypes.string).isRequired,
+    onLeaveFeedback: PropTypes.func.isRequired
+}

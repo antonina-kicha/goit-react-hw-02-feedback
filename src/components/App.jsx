@@ -2,35 +2,22 @@ import { Component } from 'react';
 
 import { Feedback } from './Feedback/Feedback';
 import { Statistics } from './Statistics/Statistics';
-
-const Section = ({ title, children }) => (
-  <section>
-    <h2>{title}</h2>
-    {children}
-  </section>
-);
-
-const Notification = ({ message }) => <p>{message}</p>;
+import { Section } from './Section/Section';
+import {Notification} from './Notification/Notification'
 
 export class App extends Component {
-  options = ["Good", "Neutral", "Bad"]
+  options = ["Good", "Neutral", "Bad"];
  
   state =  {
       good: 0,
       neutral: 0,
       bad: 0
   }
-  
+
   scoreСounter = (score) => {
     this.setState(prevState => {
-      switch (score) {
-        case "Good":
-          return { good: prevState.good + 1 };
-        case "Neutral":
-          return { neutral: prevState.neutral + 1 };
-        case "Bad":
-          return { bad: prevState.bad + 1 };
-      }
+      const scoreToLowerCase = score.toLowerCase();
+      return {[scoreToLowerCase]: prevState[scoreToLowerCase] + 1};
     });
   }
 
@@ -46,7 +33,6 @@ export class App extends Component {
     const total = this.countTotalFeedback()
     const good = this.state.good;
     return (good > 0 ? Math.round((good / total)*100) : 0);
-;
   }
   
   render() {
@@ -60,10 +46,9 @@ export class App extends Component {
               ? <Statistics good={this.state.good} neutral={this.state.neutral} bad={this.state.bad} total={this.countTotalFeedback()} positivePercentage={this.countPositiveFeedbackPercentage()} />
               : <Notification message="There is no feedback"/>
             }
-      </Section>
-
+            </Section>
     </> 
-  );
+  )
     
   }
 }
